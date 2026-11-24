@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   ClinicBook | Appointment Management
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="final.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="page-glow">
+  </div>
+  <section class="login-wrap" id="loginPage">
+   <div class="login-card">
+    <div class="brand brand-large">
+     Clinic
+     <span>
+      Book
+     </span>
+    </div>
+    <p class="eyebrow">
+     A calmer way to manage care
+    </p>
+    <h1>
+     Welcome back.
+    </h1>
+    <p class="muted-copy">
+     Sign in to continue to your ClinicBook workspace.
+    </p>
+    <form id="loginForm">
+     <label class="form-label" for="loginRole">
+      Continue as
+     </label>
+     <select class="form-select form-control-soft mb-3" id="loginRole" required="">
+      <option value="patient">
+       Patient
+      </option>
+      <option value="doctor">
+       Doctor
+      </option>
+      <option value="receptionist">
+       Receptionist
+      </option>
+     </select>
+     <div id="patientLoginField">
+      <label class="form-label" for="loginPatientName">Full name</label>
+      <input class="form-control form-control-soft mb-3" id="loginPatientName" placeholder="Enter your full name" required maxlength="80"/>
+
+      <label class="form-label" for="loginPatientEmail">Gmail / Email address</label>
+      <input class="form-control form-control-soft mb-3" id="loginPatientEmail" type="email" placeholder="you@example.com" required maxlength="120"/>
+
+      <label class="form-label" for="loginPatientPhone">Phone number</label>
+      <input class="form-control form-control-soft mb-3" id="loginPatientPhone" type="tel" inputmode="numeric" pattern="[0-9]{10}" placeholder="10-digit phone number" required maxlength="10"/>
+
+      <label class="form-label" for="loginPatientAge">Age</label>
+      <input class="form-control form-control-soft mb-3" id="loginPatientAge" type="number" min="1" max="120" placeholder="Your age" required/>
+
+      <label class="form-label" for="loginPatientGender">Gender</label>
+      <select class="form-select form-control-soft mb-3" id="loginPatientGender" required>
+       <option value="">Select gender</option>
+       <option value="Female">Female</option>
+       <option value="Male">Male</option>
+       <option value="Other">Other</option>
+       <option value="Prefer not to say">Prefer not to say</option>
+      </select>
+      <div class="info-note mb-3" id="patientProfileNote">Enter your details once. Next time, use the same email to load your saved profile.</div>
+     </div>
+     <div class="d-none" id="doctorLoginField">
+      <label class="form-label" for="loginDoctor">
+       Choose doctor profile
+      </label>
+      <select class="form-select form-control-soft mb-3" id="loginDoctor">
+      </select>
+     </div>
+     <div class="d-none info-note mb-3" id="receptionistLoginField">
+      Receptionist access is available without a password.
+     </div>
+     <button class="btn btn-primary-soft w-100" type="submit">
+      Enter ClinicBook
+      <span aria-hidden="true">
+       &rarr;
+      </span>
+     </button>
+    </form>
+   </div>
+   <div class="login-side-note">
+    <span class="note-dot">
+    </span>
+    Thoughtful care starts with a simple appointment.
+   </div>
+  </section>
+  <div class="d-none" id="appPage">
+   <nav class="topbar">
+    <a class="brand" href="#" id="brandHome">
+     Clinic
+     <span>
+      Book
+     </span>
+    </a>
+    <div class="topbar-right">
+     <span class="role-pill" id="currentRoleLabel">
+      Patient
+     </span>
+     <span class="user-label" id="currentUserLabel">
+     </span>
+     <button class="btn btn-quiet btn-sm" id="logoutButton">
+      Log out
+     </button>
+    </div>
+   </nav>
+   <main class="main-shell">
+    <!-- PATIENT DASHBOARD -->
+    <section class="dashboard d-none" id="patientDashboard">
+     <div class="page-heading">
+      <div>
+       <p class="eyebrow">
+        PATIENT SPACE
+       </p>
+       <h1>
+        Find your care.
+       </h1>
+       <p class="muted-copy">
+        Explore specialists and book a time that works for you.
+       </p>
+      </div>
+      <div class="heading-mark">
+       ✳
+      </div>
+     </div>
+     <div class="stats-grid patient-stats">
+      <article class="stat-card blush">
+       <span>
+        My appointments
+       </span>
+       <strong id="patientTotal">
+        0
+       </strong>
+       <small>
+        All appointments
+       </small>
+      </article>
+      <article class="stat-card mint">
+       <span>
+        Upcoming
+       </span>
+       <strong id="patientUpcoming">
+        0
+       </strong>
+       <small>
+        Currently booked
+       </small>
+      </article>
+      <article class="stat-card lilac">
+       <span>
+        Completed
+       </span>
+       <strong id="patientCompleted">
+        0
+       </strong>
+       <small>
+        Visits completed
+       </small>
+      </article>
+     </div>
+     <section class="panel-section">
+      <div class="section-heading">
+       <div>
+        <p class="eyebrow">
+         DISCOVER
+        </p>
+        <h2>
+         Find a doctor
+        </h2>
+       </div>
+      </div>
+      <div class="filter-row">
+       <input class="form-control form-control-soft" id="patientSearch" placeholder="Search doctor, hospital or specialty..."/>
+       <select class="form-select form-control-soft" id="patientSpecialty">
+        <option value="all">
+         All specialties
+        </option>
+       </select>
+      </div>
+      <div class="doctor-grid" id="doctorDirectory">
+      </div>
+     </section>
+     <section class="panel-section" id="bookingSection">
+      <div class="section-heading">
+       <div>
+        <p class="eyebrow">
+         BOOK A VISIT
+        </p>
+        <h2 id="bookingTitle">
+         Available appointments
+        </h2>
+        <p class="muted-copy" id="bookingSubtitle">
+         Choose a doctor above to see available times.
+        </p>
+       </div>
+      </div>
+      <div class="booking-controls">
+       <label class="field-grow">
+        Appointment date
+        <input class="form-control form-control-soft" id="patientDate" type="date"/>
+       </label>
+       <label class="field-grow">
+        Reason for visit
+        <input class="form-control form-control-soft" id="patientReason" placeholder="e.g. General consultation" type="text"/>
+       </label>
+      </div>
+      <div class="slot-grid empty-state" id="patientSlots">
+       Select a doctor to view available slots.
+      </div>
+     </section>
+     <section class="panel-section">
+      <div class="section-heading">
+       <div>
+        <p class="eyebrow">
+         YOUR ACTIVITY
+        </p>
+        <h2>
+         My appointments
+        </h2>
+       </div>
+      </div>
+      <div class="table-card">
+       <div class="table-responsive">
+        <table class="table align-middle">
+         <thead>
+          <tr>
+           <th>
+            Doctor
+           </th>
+           <th>
+            Date
+           </th>
+           <th>
+            Time
+           </th>
+           <th>
+            Reason
+           </th>
+           <th>
+            Status
+           </th>
+           <th>
+            Action
+           </th>
+          </tr>
+         </thead>
+         <tbody id="patientAppointments">
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </section>
+    </section>
+    <!-- DOCTOR DASHBOARD -->
+    <section class="dashboard d-none" id="doctorDashboard">
+     <div class="page-heading">
+      <div>
+       <p class="eyebrow">DOCTOR SPACE</p>
+       <h1>Good day, <span id="doctorGreeting">Doctor</span>.</h1>
+       <p class="muted-copy">Your schedule, appointments and availability at a glance.</p>
+      </div>
+      <div class="heading-mark">✳</div>
+     </div>
+
+     <!-- Teammate-inspired dashboard navigation -->
+     <ul class="nav nav-pills doctor-dashboard-tabs mb-4" id="doctorDashboardTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+       <button class="nav-link active" id="doctor-overview-tab" data-bs-toggle="pill" data-bs-target="#doctor-overview-pane" type="button" role="tab">Overview</button>
+      </li>
+      <li class="nav-item" role="presentation">
+       <button class="nav-link" id="doctor-appointments-tab" data-bs-toggle="pill" data-bs-target="#doctor-appointments-pane" type="button" role="tab">Appointments</button>
+      </li>
+      <li class="nav-item" role="presentation">
+       <button class="nav-link" id="doctor-slots-tab" data-bs-toggle="pill" data-bs-target="#doctor-slots-pane" type="button" role="tab">My Slots</button>
+      </li>
+      <li class="nav-item" role="presentation">
+       <button class="nav-link" id="doctor-profile-tab" data-bs-toggle="pill" data-bs-target="#doctor-profile-pane" type="button" role="tab">My Profile</button>
+      </li>
+     </ul>
+
+     <div class="tab-content doctor-tab-content">
+      <div class="tab-pane fade show active" id="doctor-overview-pane" role="tabpanel" aria-labelledby="doctor-overview-tab">
+       <div class="stats-grid">
+        <article class="stat-card lilac"><span>Total appointments</span><strong id="doctorTotal">0</strong><small>Excluding cancelled</small></article>
+        <article class="stat-card lilac"><span>Booked appointments</span><strong id="doctorBooked">0</strong><small>Upcoming visits</small></article>
+        <article class="stat-card lilac"><span>Completed appointments</span><strong id="doctorCompleted">0</strong><small>Visits completed</small></article>
+       </div>
+       <section class="panel-section">
+        <div class="section-heading"><div><p class="eyebrow">YOUR DAY</p><h2>Today's appointments</h2><p class="muted-copy">A quick view of your schedule. Open Appointments to view another date.</p></div></div>
+        <div class="overview-hint">Your appointment list is available in the <strong>Appointments</strong> tab.</div>
+       </section>
+      </div>
+
+      <div class="tab-pane fade" id="doctor-appointments-pane" role="tabpanel" aria-labelledby="doctor-appointments-tab">
+       <section class="panel-section doctor-content-card">
+        <div class="section-heading"><div><p class="eyebrow">PATIENT VISITS</p><h2>My Appointments</h2><p class="muted-copy">Review patient details and update appointment status.</p></div><label class="date-filter">Choose date<input class="form-control form-control-soft" id="doctorAppointmentDate" type="date"></label></div>
+        <div class="table-card"><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Patient</th><th>Contact</th><th>Age / Gender</th><th>Time</th><th>Reason</th><th>Status</th><th>Action</th></tr></thead><tbody id="doctorAppointments"></tbody></table></div></div>
+       </section>
+      </div>
+
+      <div class="tab-pane fade" id="doctor-slots-pane" role="tabpanel" aria-labelledby="doctor-slots-tab">
+       <section class="panel-section doctor-content-card">
+        <div class="section-heading"><div><p class="eyebrow">AVAILABILITY</p><h2>Manage my slots</h2><p class="muted-copy">Add available time slots for patients to book.</p></div></div>
+        <form class="inline-form" id="doctorSlotForm">
+         <label>Date<input class="form-control form-control-soft" id="doctorSlotDate" required type="date"></label>
+         <label>Start time<input class="form-control form-control-soft" id="doctorSlotStart" required type="time"></label>
+         <label>End time<input class="form-control form-control-soft" id="doctorSlotEnd" required type="time"></label>
+         <button class="btn btn-primary-soft" type="submit">+ Add slot</button>
+        </form>
+        <div class="table-card mt-3"><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Date</th><th>Start time</th><th>End time</th><th>Status</th><th>Action</th></tr></thead><tbody id="doctorSlots"></tbody></table></div></div>
+       </section>
+      </div>
+
+      <div class="tab-pane fade" id="doctor-profile-pane" role="tabpanel" aria-labelledby="doctor-profile-tab">
+       <section class="panel-section doctor-content-card"><div class="section-heading"><div><p class="eyebrow">PROFILE</p><h2>Doctor information</h2><p class="muted-copy">Your professional details.</p></div></div><div class="profile-card" id="doctorProfile"></div></section>
+      </div>
+     </div>
+    </section>
+    <!-- RECEPTIONIST DASHBOARD -->
+    <section class="dashboard d-none" id="receptionistDashboard">
+     <div class="page-heading">
+      <div>
+       <p class="eyebrow">
+        FRONT DESK
+       </p>
+       <h1>
+        Reception desk.
+       </h1>
+       <p class="muted-copy">
+        Coordinate appointments and keep the clinic moving.
+       </p>
+      </div>
+      <div class="heading-mark">
+       ✳
+      </div>
+     </div>
+     <div class="stats-grid">
+      <article class="stat-card blush">
+       <span>
+        Total appointments
+       </span>
+       <strong id="receptionTotal">
+        0
+       </strong>
+       <small>
+        All records
+       </small>
+      </article>
+      <article class="stat-card mint">
+       <span>
+        Booked
+       </span>
+       <strong id="receptionBooked">
+        0
+       </strong>
+       <small>
+        Active bookings
+       </small>
+      </article>
+      <article class="stat-card lilac">
+       <span>
+        Doctors
+       </span>
+       <strong id="receptionDoctors">
+        0
+       </strong>
+       <small>
+        In the directory
+       </small>
+      </article>
+     </div>
+     <section class="panel-section">
+      <div class="section-heading">
+       <div>
+        <p class="eyebrow">
+         NEW BOOKING
+        </p>
+        <h2>
+         Book for a patient
+        </h2>
+        <p class="muted-copy">
+         Select a doctor and an available slot.
+        </p>
+       </div>
+      </div>
+      <form class="reception-form" id="receptionForm">
+       <label>
+        Patient name
+        <input class="form-control form-control-soft" id="receptionPatientName" placeholder="Enter patient's name" required=""/>
+       </label>
+       <label>
+        Doctor
+        <select class="form-select form-control-soft" id="receptionDoctor" required="">
+        </select>
+       </label>
+       <label>
+        Date
+        <input class="form-control form-control-soft" id="receptionDate" required="" type="date"/>
+       </label>
+       <label>
+        Available time
+        <select class="form-select form-control-soft" id="receptionSlot" required="">
+         <option value="">
+          Choose doctor and date first
+         </option>
+        </select>
+       </label>
+       <label class="full-width">
+        Reason for visit
+        <input class="form-control form-control-soft" id="receptionReason" placeholder="e.g. Follow-up consultation" required=""/>
+       </label>
+       <button class="btn btn-primary-soft full-width" type="submit">
+        Confirm appointment
+       </button>
+      </form>
+     </section>
+     <section class="panel-section">
+      <div class="section-heading">
+       <div>
+        <p class="eyebrow">
+         CLINIC OVERVIEW
+        </p>
+        <h2>
+         All appointments
+        </h2>
+       </div>
+       <input class="form-control form-control-soft search-small" id="receptionSearch" placeholder="Search patient or doctor..."/>
+      </div>
+      <div class="table-card">
+       <div class="table-responsive">
+        <table class="table align-middle">
+         <thead>
+          <tr>
+           <th>
+            Patient
+           </th>
+           <th>
+            Doctor
+           </th>
+           <th>
+            Date
+           </th>
+           <th>
+            Time
+           </th>
+           <th>
+            Reason
+           </th>
+           <th>
+            Status
+           </th>
+           <th>
+            Action
+           </th>
+          </tr>
+         </thead>
+         <tbody id="receptionAppointments">
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </section>
+    </section>
+   </main>
+   <footer class="app-footer">
+    ClinicBook
+    <span>
+     &middot;
+    </span>
+    
+   </footer>
+  </div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+   <div class="toast custom-toast" id="appToast" role="alert">
+    <div class="toast-body" id="toastMessage">
+     Done!
+    </div>
+   </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="final.js">
+  </script>
+ </body>
+</html>
+
