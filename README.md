@@ -1,5 +1,9 @@
 # ClinicBook 🏥
 
+
+https://vijayalakshmeeidk-coder.github.io/clinicbookOJT/
+
+
 A simple clinic appointment booking system built as part of my On-the-Job Training (OJT) project.
 
 ClinicBook helps patients book appointments with doctors while allowing doctors and receptionists to manage appointment schedules through separate dashboards.
