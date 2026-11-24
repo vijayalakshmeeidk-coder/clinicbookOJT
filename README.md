@@ -1,6 +1,6 @@
 # ClinicBook
 OJT project
-https://vijayalakshmeeidk-coder.github.io/ClinicBook/
+https://vijayalakshmeeidk-coder.github.io/clinicbookOJT/
 
 # 🏥 ClinicBook — Smart Healthcare Appointment Booking
 
