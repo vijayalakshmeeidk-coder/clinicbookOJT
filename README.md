@@ -1,93 +1,67 @@
-# ClinicBook
-OJT project
-https://vijayalakshmeeidk-coder.github.io/clinicbookOJT/
+# ClinicBook 🏥
 
-# 🏥 ClinicBook — Smart Healthcare Appointment Booking
+A simple clinic appointment booking system built as part of my On-the-Job Training (OJT) project.
 
-**Healthcare, made simpler.**
+ClinicBook helps patients book appointments with doctors while allowing doctors and receptionists to manage appointment schedules through separate dashboards.
 
-ClinicBook is a web-based healthcare appointment booking platform designed to simplify the process of finding doctors and scheduling medical appointments.
+## ✨ Features
 
-The goal is to reduce the hassle of traditional phone-based appointment booking by providing a simple digital platform for patients, doctors and receptionists.
+### Patient
+- View the patient dashboard.
+- Browse available doctors and appointment slots.
+- Book appointments.
+- View appointment details.
 
----
+### Doctor
+- View the doctor dashboard.
+- Manage appointment slots.
+- View scheduled appointments.
 
-## 📌 Problem Statement
+### Receptionist
+- Access the receptionist dashboard.
+- Manage patient appointments.
+- Help schedule appointments.
 
-Booking doctor appointments often involves calling clinics, waiting for receptionist responses and manually checking doctor availability.
+## 🛠️ Technologies Used
 
-ClinicBook aims to make this process easier by bringing appointment booking and clinic management into one platform.
+- HTML5 – Structure of the application.
+- CSS3 – Styling and responsive design.
+- JavaScript – Application logic and interactions.
+- Bootstrap 5 – Layout and UI components.
+- LocalStorage – Stores sample application data in the browser.
 
-## ✨ Key Features
+## 📁 Project Structure
 
-### 👤 Patient
-
-* Browse available doctors.
-* Explore doctors based on their specialties.
-* View doctor profiles.
-* Book and manage appointments.
-* View upcoming and previous appointments.
-* Manage medical record-sharing preferences.
-
-### 🩺 Doctor
-
-* View scheduled appointments.
-* Manage daily appointment schedules.
-* Track patient appointments.
-
-### 🏥 Receptionist
-
-* Manage doctor information.
-* Manage clinic schedules.
-* View and manage appointments.
-* Assist patients with appointment booking.
-
-*Note: These are the planned prototype features. Individual features will be marked complete as they are implemented.*
-
-## 🛠️ Tech Stack
-
-| Technology   | Purpose                     |
-| ------------ | --------------------------- |
-| HTML5        | Structure of the website    |
-| CSS3         | Styling and layout          |
-| Bootstrap 5  | Responsive UI components    |
-| JavaScript   | Interactive functionality   |
-| LocalStorage | Demo data storage (planned) |
-
-
-## 📂 Project Structure
-
-```tex
-MediQue/
+```text
+clinicbookOJT/
 │
-├── index.html
-├── patient-dashboard.html
-├── doctor-directory.html
-├── doctor-profile.html
-├── booking.html
-├── my-appointments.html
-├── medical-records.html
-├── doctor-dashboard.html
-├── receptionist-dashboard.html
-├── manage-doctors.html
-├── manage-schedule.html
-└── front-desk-appointments.html
+├── index.html       # Main application page
+├── style.css        # Styling and responsive design
+├── dashboard.js     # Application logic and dashboard functions
+├── README.md        # Project documentation
+├── license          # License information
+└── .gitignore       # Files ignored by Git
 ```
 
-*Files will be added as development progresses.*
+## 🚀 How to Run
 
-## 🔮 Future Improvements
+1. Clone or download this repository.
+2. Open the project folder.
+3. Open `index.html` in your browser.
+4. Explore the application using the available roles.
 
-* User authentication and role-based access.
-* Database integration.
-* Real-time doctor availability.
-* Appointment notifications.
-* Secure medical record management.
-* Multi-clinic support.
+## ⚠️ Project Limitations
 
+- This is a frontend prototype.
+- Application data is stored using browser LocalStorage.
+- Data is not synchronized between different devices.
+- Role selection does not provide real authentication.
+- The project uses sample data and is not intended for real patient records.
 
+## 🎯 Project Purpose
+
+The purpose of ClinicBook is to demonstrate frontend development skills, JavaScript functionality, appointment management logic, and basic user interface design.
 
 ---
 
-⭐ If you find this project interesting, consider giving the repository a star!
-
+**Developed as an OJT project.**
